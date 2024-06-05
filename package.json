@@ -1,0 +1,17 @@
+{
+  "name": "password-manager",
+  "version": "1.0.0",
+  "description": "A small Node-Express app to store passwords",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --watch --env-file=.env index.js"
+  },
+  "author": "Yaseen Sidhik",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1"
+  }
+}
