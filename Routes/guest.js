@@ -7,8 +7,28 @@ const bcrypt = require("bcrypt");
 // Models
 const User = require("../Models/Users");
 
+// Routes
+
 router.get("/login", (req, res) => {
   res.render("guest/login");
+});
+
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  let user = await User.findOne({ username });
+  if (user) {
+    const isMatchingPassword = await bcrypt.compare(password, user.password);
+    if (isMatchingPassword) {
+      req.session.isAuth = true;
+      req.session.username = user.username;
+      req.session.role = "user";
+      res.redirect("/user");
+    } else {
+      return res.redirect(401, "/guest/login");
+    }
+  } else {
+    return res.redirect(401, "/guest/login");
+  }
 });
 
 router.get("/register", (req, res) => {
