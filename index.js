@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const session = require("express-session");
 const MongoDBSession = require("connect-mongodb-session")(session);
+const engine = require("ejs-mate");
 
 // Fundamentals
 const app = express();
@@ -44,6 +45,7 @@ app.use(
 );
 
 // View Engine
+app.engine("ejs", engine);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 

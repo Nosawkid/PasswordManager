@@ -14,7 +14,11 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  console.log(req.body);
   const { username, password } = req.body;
+  if (!username || !password) {
+    return res.redirect("/guest/login");
+  }
   let user = await User.findOne({ username });
   if (user) {
     const isMatchingPassword = await bcrypt.compare(password, user.password);
@@ -22,7 +26,7 @@ router.post("/login", async (req, res) => {
       req.session.isAuth = true;
       req.session.username = user.username;
       req.session.role = "user";
-      res.redirect("/user");
+      res.render("user/profile", { user });
     } else {
       return res.redirect(401, "/guest/login");
     }
