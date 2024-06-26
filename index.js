@@ -14,6 +14,7 @@ const dbName = process.env.DB_NAME || "pswdManager";
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
+const isAuth = require("./middlewares/authentication");
 
 // Database
 mongoose
@@ -61,7 +62,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/guest", guestRoute);
-app.use("/user", userRoutes);
+app.use("/user", isAuth, userRoutes);
 
 app.get("/*", (req, res) => {
   res.status(404).render("error/404");

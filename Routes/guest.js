@@ -26,7 +26,8 @@ router.post("/login", async (req, res) => {
       req.session.isAuth = true;
       req.session.username = user.username;
       req.session.role = "user";
-      res.render("user/profile", { user });
+
+      res.redirect("/user");
     } else {
       return res.redirect(401, "/guest/login");
     }

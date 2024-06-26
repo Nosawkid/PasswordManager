@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Welcome <%= user.username %></h1>
-    <form action="/user/logout" method="post">
-      <button>Sign Out</button>
-    </form>
-  </body>
-</html>
+<% layout('./layouts/boilerplate') %>
+
+<h1>Welcome <%= details.name %></h1>
+<a href="/user/addpassword">Add new password</a>
+<form action="/user/logout" method="post">
+  <button>Sign Out</button>
+</form>
