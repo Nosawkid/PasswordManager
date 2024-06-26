@@ -14,7 +14,6 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  console.log(req.body);
   const { username, password } = req.body;
   if (!username || !password) {
     return res.redirect("/guest/login");
@@ -26,7 +25,7 @@ router.post("/login", async (req, res) => {
       req.session.isAuth = true;
       req.session.username = user.username;
       req.session.role = "user";
-
+      req.session.uuid = user._id;
       res.redirect("/user");
     } else {
       return res.redirect(401, "/guest/login");
