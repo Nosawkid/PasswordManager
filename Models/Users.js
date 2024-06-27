@@ -14,6 +14,10 @@ const passwordSchema = new Schema(
     passTag: {
       type: String,
     },
+    passIv: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

@@ -37,12 +37,51 @@ router.post("/addpassword", async (req, res) => {
       socialName,
       socialPassword: cipherText,
       passTag: tag,
+      passIv: iv.toString("base64"),
     });
 
     await user.save();
     res.redirect("/user");
   } catch (error) {
     console.log("Error");
+    console.log(error);
+  }
+});
+
+router.get("/viewpasswords", async (req, res) => {
+  try {
+    const uid = req.session.uuid;
+    const user = await User.findById(uid);
+    const userPasswords = user.passwords.map((el) => {
+      const { socialName, socialPassword, passTag, passIv } = el;
+      try {
+        const decipher = crypto.createDecipheriv(
+          "aes-256-gcm",
+          Buffer.from(encryptionKey, "hex"),
+          Buffer.from(passIv, "base64")
+        );
+        decipher.setAuthTag(Buffer.from(passTag, "base64"));
+        let decryptedPassword = decipher.update(
+          socialPassword,
+          "base64",
+          "utf-8"
+        );
+        decryptedPassword += decipher.final("utf-8");
+        return {
+          socialName,
+          socialPassword: decryptedPassword,
+        };
+      } catch (error) {
+        return {
+          socialName,
+          socialPassword: "",
+        };
+      }
+    });
+    console.log(userPasswords);
+    res.render("user/viewpasswords", { userPasswords });
+  } catch (error) {
+    console.log("General Error");
     console.log(error);
   }
 });
