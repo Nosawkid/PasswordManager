@@ -1,3 +1,21 @@
 <% layout('./layouts/boilerplate') %>
-<h1>404</h1>
-<h2>OOPS... Nothing is here</h2>
+
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+      <h1 class="display-4"><%= status %></h1>
+      <h2 class="mb-4"><%= err.message %></h2>
+      <p class="lead">
+        The page you are looking for might have been removed, had its name
+        changed, or is temporarily unavailable.
+      </p>
+      <a href="/" class="btn btn-primary mt-3">Go Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap CSS (Assuming Bootstrap is included in your layout) -->
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+/>

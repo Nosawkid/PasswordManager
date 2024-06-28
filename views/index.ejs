@@ -1,6 +1,114 @@
 <% layout('./layouts/boilerplate') %>
 
-<h1>Welcome to Password Manager</h1>
-<p>We keep your passwords protected</p>
-<a href="/guest/login">Login</a><br />
-<a href="/guest/register">Register</a>
+<div class="container-fluid">
+  <!-- Hero Section with Gradient Background -->
+  <div class="gradient-bg-primary text-center py-5">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <h1 class="display-3 text-white">Welcome to Password Manager</h1>
+        <p class="lead text-white">We keep your passwords protected</p>
+        <a class="btn btn-primary btn-lg mr-2" href="/guest/login">Login</a>
+        <a class="btn btn-secondary btn-lg" href="/guest/register">Register</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <div class="py-5">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <h2 class="text-primary text-center mb-4">About Us</h2>
+        <div class="about-content">
+          <p>
+            Password Manager is a secure and reliable platform designed to
+            safeguard your sensitive information. With state-of-the-art AES-256
+            encryption, your passwords are encrypted locally on your device
+            before being stored securely in our database. We prioritize your
+            privacy and security, ensuring that only you have access to your
+            passwords.
+          </p>
+          <p>
+            Our platform offers a user-friendly interface, multi-factor
+            authentication options, and regular security updates to keep your
+            information protected from unauthorized access. Join thousands of
+            users who trust Password Manager to manage their passwords securely.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="gradient-bg-secondary text-center py-5">
+    <div class="row">
+      <div class="col-md-4">
+        <i class="fas fa-lock fa-4x mb-3 text-primary"></i>
+        <h3>Secure Encryption</h3>
+        <p>Advanced AES-256 encryption to keep your passwords secure.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fas fa-user-shield fa-4x mb-3 text-success"></i>
+        <h3>Privacy Protection</h3>
+        <p>Your data is encrypted and never shared with third parties.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="fas fa-shield-alt fa-4x mb-3 text-info"></i>
+        <h3>Multi-factor Authentication</h3>
+        <p>Enhance security with multi-factor authentication options.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="py-5 text-center">
+    <h2>Get Started Today</h2>
+    <p class="lead">Join thousands of users who trust our password manager.</p>
+    <a class="btn btn-primary btn-lg" href="/guest/register"
+      >Create an Account</a
+    >
+  </div>
+</div>
+
+<style>
+  /* Custom CSS for gradients and colors */
+  .gradient-bg-primary {
+    background: linear-gradient(
+      to bottom right,
+      #2c3e50,
+      #3498db
+    ); /* Updated primary gradient colors */
+    color: #fff; /* Text color */
+  }
+
+  .gradient-bg-secondary {
+    background: linear-gradient(
+      to bottom right,
+      #333333,
+      #4d4d4d,
+      #666666
+    ); /* Updated secondary gradient colors */
+    color: #fff; /* Text color */
+  }
+
+  /* Adjusted text alignment and spacing */
+  .py-5 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  /* Styling for About Us section */
+  .about-content {
+    text-align: justify;
+  }
+
+  .about-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+  }
+</style>
+
+<!-- FontAwesome Icons -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
