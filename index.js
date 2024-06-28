@@ -5,6 +5,7 @@ const path = require("path");
 const session = require("express-session");
 const MongoDBSession = require("connect-mongodb-session")(session);
 const engine = require("ejs-mate");
+const methodOverride = require("method-override");
 
 // Fundamentals
 const app = express();
@@ -13,6 +14,7 @@ const dbName = process.env.DB_NAME || "pswdManager";
 // Mongoose
 
 // Middlewares
+app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 const isAuth = require("./middlewares/authentication");
 
