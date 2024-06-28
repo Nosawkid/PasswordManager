@@ -22,10 +22,15 @@ app.use(express.urlencoded({ extended: true }));
 const isAuth = require("./middlewares/authentication");
 
 // Database
+const dbConnectionString = process.env.DB_STRING;
+
 mongoose
-  .connect(`mongodb://127.0.0.1:27017/${dbName}`)
+  .connect(dbConnectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((res) => {
-    console.log(`Database Initialised with the name ${dbName}`);
+    console.log(`Database Initialised`);
   })
   .catch((err) => {
     console.log("Database connection error", err);
@@ -36,7 +41,7 @@ mongoose
 
 // Session storing database
 const store = new MongoDBSession({
-  uri: `mongodb://127.0.0.1:27017/${dbName}`,
+  uri: dbConnectionString,
   collection: "PasswordAuthSession",
 });
 
