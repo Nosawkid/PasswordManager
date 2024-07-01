@@ -22,13 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 const isAuth = require("./middlewares/authentication");
 
 // Database
-const dbConnectionString = process.env.DB_STRING;
-
 mongoose
-  .connect(dbConnectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect("mongodb://127.0.0.1:27017/" + dbName)
   .then((res) => {
     console.log(`Database Initialised`);
   })
@@ -41,7 +36,7 @@ mongoose
 
 // Session storing database
 const store = new MongoDBSession({
-  uri: dbConnectionString,
+  uri: `mongodb://127.0.0.1:27017/${dbName}`,
   collection: "PasswordAuthSession",
 });
 
